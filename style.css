@@ -1,0 +1,1615 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cyan: #00bfff;
+    --cyan-dark: #1d5268;
+    --cyan-soft: rgba(0, 191, 255, 0.08);
+
+    --bg: #080b10;
+    --panel: #0d1117;
+    --panel-light: #111820;
+    --sidebar: #0a0e14;
+
+    --border: #1d2630;
+    --text: #ffffff;
+    --muted: #8f9aa6;
+    --muted-dark: #65717d;
+
+    --green: #00e676;
+}
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+
+    background-color: var(--sidebar);
+
+    padding: 25px 20px;
+
+    border-right: 1px solid var(--border);
+
+    flex-shrink: 0;
+
+    transition:
+        width 0.35s ease,
+        padding 0.35s ease,
+        opacity 0.35s ease;
+
+    box-shadow:
+        8px 0 25px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    z-index: 50;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: var(--cyan);
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+nav a {
+    color: #aeb7c2;
+    text-decoration: none;
+
+    padding: 13px 14px;
+
+    border-radius: 8px;
+    border: 1px solid transparent;
+
+    transition: 0.2s;
+
+    font-size: 14px;
+}
+
+nav a:hover {
+    background-color: var(--panel-light);
+    color: white;
+    border-color: var(--border);
+}
+
+nav a.active {
+    background-color: var(--panel-light);
+    color: var(--cyan);
+
+    border: 1px solid var(--cyan-dark);
+    border-left: 3px solid var(--cyan);
+
+    box-shadow:
+        inset 0 0 15px rgba(0, 191, 255, 0.04);
+}
+
+
+/* =========================================================
+   AI SHORTCUT
+========================================================= */
+
+.ai-shortcut {
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+.ai-shortcut button {
+    width: 100%;
+
+    background-color: #0d1117;
+
+    color: var(--cyan);
+
+    border: 1px solid var(--cyan-dark);
+    border-radius: 8px;
+
+    padding: 13px 12px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-shortcut button:hover {
+    background-color: var(--panel-light);
+
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 15px rgba(0, 191, 255, 0.08);
+}
+
+.ai-shortcut button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 191, 255, 0.08),
+        transparent
+    );
+
+    transition: 0.5s;
+}
+
+.ai-shortcut button:hover::before {
+    left: 100%;
+}
+
+
+/* =========================================================
+   CONTROL PANEL
+========================================================= */
+
+main {
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+
+    overflow-y: auto;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+main.panel-exit {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+main.panel-enter {
+    animation: controlPanelEnter 0.4s ease forwards;
+}
+
+@keyframes controlPanelEnter {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background-color: #0d1117;
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.12);
+
+    position: relative;
+    z-index: 10;
+}
+
+.topbar-left,
+.topbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+
+    color: white;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    margin-right: 15px;
+
+    transition: 0.2s;
+}
+
+.menu-button:hover {
+    color: var(--cyan);
+}
+
+.page-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.system-status {
+    font-size: 14px;
+
+    margin-right: 25px;
+
+    color: var(--cyan);
+
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.clock {
+    font-size: 14px;
+
+    color: #aeb7c2;
+
+    font-variant-numeric: tabular-nums;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.content {
+    padding: 30px;
+}
+
+.welcome {
+    margin-bottom: 30px;
+
+    animation: contentEnter 0.35s ease;
+}
+
+.welcome h2 {
+    font-size: 28px;
+
+    margin-bottom: 8px;
+
+    letter-spacing: 0.3px;
+}
+
+.welcome p {
+    color: #999999;
+    font-size: 14px;
+}
+
+@keyframes contentEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   STATUS CARDS
+========================================================= */
+
+.status-cards {
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 20px;
+}
+
+.status-card {
+    flex: 1;
+
+    background-color: var(--panel);
+
+    padding: 28px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+    min-height: 140px;
+    min-width: 0;
+
+    transition: 0.25s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.status-card:hover {
+    border-color: var(--cyan);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 191, 255, 0.08);
+}
+
+.status-card::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: var(--cyan);
+
+    transition: 0.3s;
+}
+
+.status-card:hover::after {
+    width: 100%;
+}
+
+.status-card h3 {
+    font-size: 13px;
+
+    margin-bottom: 18px;
+
+    color: #8f9aa6;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.status-card span {
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: var(--cyan);
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard-bottom {
+    display: flex;
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+.dashboard-panel {
+    flex: 1;
+
+    background-color: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 25px;
+
+    min-height: 180px;
+
+    min-width: 0;
+
+    transition: 0.25s;
+}
+
+.dashboard-panel:hover {
+    border-color: #263746;
+}
+
+.dashboard-panel h3 {
+    font-size: 16px;
+
+    margin-bottom: 15px;
+
+    color: var(--cyan);
+}
+
+.dashboard-panel p {
+    color: #999999;
+}
+
+
+/* =========================================================
+   ATIVIDADE
+========================================================= */
+
+.activity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 12px 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 14px;
+
+    transition: 0.2s;
+
+    border-radius: 6px;
+}
+
+.activity:hover {
+    background-color: var(--panel-light);
+
+    padding-left: 15px;
+}
+
+.activity:last-child {
+    border-bottom: none;
+}
+
+.activity-time {
+    color: var(--cyan);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    min-width: 40px;
+}
+
+
+/* =========================================================
+   DISPOSITIVOS
+========================================================= */
+
+.device {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    transition: 0.2s;
+}
+
+.device:hover {
+    background-color: var(--panel-light);
+
+    padding-left: 15px;
+}
+
+.device:last-child {
+    border-bottom: none;
+}
+
+.device strong {
+    display: block;
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+}
+
+.device div span {
+    display: block;
+
+    font-size: 12px;
+
+    color: #777777;
+}
+
+.device-status {
+    color: var(--cyan);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   BOTÕES DA CASA
+========================================================= */
+
+#lightButton,
+#tvButton,
+#environmentButton {
+    background-color: var(--panel-light);
+
+    color: var(--cyan);
+
+    border: 1px solid var(--cyan-dark);
+
+    border-radius: 6px;
+
+    padding: 10px 16px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#lightButton:hover,
+#tvButton:hover,
+#environmentButton:hover {
+    background-color: #16232d;
+
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 12px rgba(0, 191, 255, 0.08);
+}
+
+
+/* =========================================================
+   AI PANEL
+========================================================= */
+
+.ai-panel {
+    display: none;
+
+    flex: 1;
+
+    min-width: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(0, 191, 255, 0.08) 0%,
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at center,
+            #0b141c 0%,
+            #080b10 45%,
+            #05070a 100%
+        );
+
+    position: relative;
+
+    overflow: hidden;
+
+    flex-direction: column;
+
+    z-index: 0;
+
+    opacity: 0;
+}
+
+.ai-panel.active {
+    display: flex;
+
+    animation: aiPanelEnter 0.55s ease forwards;
+}
+
+.ai-panel.leaving {
+    animation: aiPanelExit 0.35s ease forwards;
+}
+
+@keyframes aiPanelEnter {
+
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes aiPanelExit {
+
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+}
+
+
+/* =========================================================
+   GRADE TECNOLÓGICA
+========================================================= */
+
+.ai-panel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 191, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 191, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 40px 40px;
+
+    opacity: 0.35;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   LINHAS HUD
+========================================================= */
+
+.ai-panel::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(0, 191, 255, 0.025) 50%,
+            transparent 100%
+        );
+
+    animation: hudScan 8s linear infinite;
+
+    z-index: 0;
+}
+
+@keyframes hudScan {
+
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+
+/* =========================================================
+   AI HEADER
+========================================================= */
+
+.ai-header {
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 35px;
+
+    background-color: rgba(10, 14, 20, 0.8);
+
+    border-bottom: 1px solid var(--border);
+
+    position: relative;
+
+    z-index: 5;
+
+    backdrop-filter: blur(8px);
+}
+
+.ai-title {
+    font-size: 22px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: var(--cyan);
+
+    text-shadow:
+        0 0 12px rgba(0, 191, 255, 0.35);
+}
+
+.ai-status {
+    position: absolute;
+
+    right: 35px;
+
+    font-size: 13px;
+
+    color: var(--cyan);
+
+    font-weight: bold;
+
+    animation: statusPulse 2s infinite;
+}
+
+
+/* =========================================================
+   BOTÃO VOLTAR
+========================================================= */
+
+.ai-back-button {
+    position: absolute;
+
+    left: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: transparent;
+
+    border: 1px solid transparent;
+
+    color: #8f9aa6;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 7px;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.ai-back-button:hover {
+    color: var(--cyan);
+
+    background-color: var(--panel-light);
+
+    border-color: var(--cyan-dark);
+
+    box-shadow:
+        0 0 15px rgba(0, 191, 255, 0.08);
+}
+
+
+/* =========================================================
+   HUD SUPERIOR
+========================================================= */
+
+.ai-hud-top {
+    position: absolute;
+
+    top: 85px;
+
+    left: 35px;
+
+    right: 35px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    color: #4e6573;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+}
+
+.ai-hud-corner {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.ai-hud-corner span:first-child {
+    color: var(--cyan);
+}
+
+
+/* =========================================================
+   CORE AREA
+========================================================= */
+
+.ai-core {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 0;
+}
+
+
+/* =========================================================
+   CORE
+========================================================= */
+
+.core-circle {
+    width: 190px;
+
+    height: 190px;
+
+    border: 2px solid var(--cyan);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    box-shadow:
+        0 0 20px rgba(0, 191, 255, 0.25),
+        0 0 60px rgba(0, 191, 255, 0.08);
+
+    animation: corePulse 3s infinite;
+}
+
+.core-circle::before {
+    content: "";
+
+    position: absolute;
+
+    width: 145px;
+
+    height: 145px;
+
+    border: 1px solid var(--cyan-dark);
+
+    border-radius: 50%;
+}
+
+.core-circle::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+
+    height: 100px;
+
+    border: 1px solid var(--cyan);
+
+    border-radius: 50%;
+
+    opacity: 0.6;
+
+    animation: coreRotate 10s linear infinite;
+}
+
+.core-inner {
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    background-color: var(--cyan);
+
+    box-shadow:
+        0 0 20px var(--cyan),
+        0 0 45px rgba(0, 191, 255, 0.7);
+
+    animation: innerPulse 2s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+
+    0% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 20px rgba(0, 191, 255, 0.25),
+            0 0 60px rgba(0, 191, 255, 0.08);
+    }
+
+    50% {
+        transform: scale(1.04);
+
+        box-shadow:
+            0 0 30px rgba(0, 191, 255, 0.35),
+            0 0 80px rgba(0, 191, 255, 0.12);
+    }
+
+    100% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 20px rgba(0, 191, 255, 0.25),
+            0 0 60px rgba(0, 191, 255, 0.08);
+    }
+}
+
+@keyframes coreRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes innerPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px var(--cyan),
+            0 0 45px rgba(0, 191, 255, 0.7);
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px var(--cyan),
+            0 0 70px rgba(0, 191, 255, 0.9);
+    }
+}
+
+
+/* =========================================================
+   CORE ATIVO
+========================================================= */
+
+.ai-panel.processing .core-circle {
+    animation:
+        corePulse 1s infinite,
+        coreProcessing 1.2s linear infinite;
+}
+
+.ai-panel.processing .core-inner {
+    animation:
+        innerPulse 0.7s ease-in-out infinite;
+}
+
+@keyframes coreProcessing {
+
+    from {
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        filter: hue-rotate(20deg);
+    }
+}
+
+
+/* =========================================================
+   NOME E ESTADO
+========================================================= */
+
+.ai-core h2 {
+    margin-top: 35px;
+
+    font-size: 26px;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 15px rgba(0, 191, 255, 0.15);
+}
+
+.ai-core p {
+    margin-top: 10px;
+
+    color: var(--cyan);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   RESPOSTA DA IA
+========================================================= */
+
+.ai-response {
+    position: relative;
+
+    left: auto;
+    bottom: auto;
+
+    transform: none;
+
+    width: min(650px, 80%);
+
+    margin-top: 18px;
+
+    text-align: center;
+
+    color: #aeb7c2;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    min-height: 20px;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    z-index: 4;
+}
+
+.ai-response.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.ai-response::before {
+    content: "J.A.R.V.I.S. // ";
+
+    color: var(--cyan);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   AI COMMAND
+========================================================= */
+
+.ai-command {
+    width: min(700px, 85%);
+
+    margin: 0 auto 30px;
+
+    display: flex;
+
+    gap: 10px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.ai-command input {
+    flex: 1;
+
+    background-color: rgba(13, 17, 23, 0.9);
+
+    border: 1px solid var(--cyan-dark);
+
+    border-radius: 8px;
+
+    padding: 16px 18px;
+
+    color: white;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.ai-command input::placeholder {
+    color: #65717d;
+}
+
+.ai-command input:focus {
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 15px rgba(0, 191, 255, 0.08);
+}
+
+.ai-command button {
+    width: 55px;
+
+    border: 1px solid var(--cyan-dark);
+
+    border-radius: 8px;
+
+    background-color: #111820;
+
+    color: var(--cyan);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.ai-command button:hover {
+    background-color: #16232d;
+
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 15px rgba(0, 191, 255, 0.15);
+}
+
+.ai-command button:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   RODAPÉ AI
+========================================================= */
+
+.ai-footer {
+    height: 50px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 35px;
+
+    border-top: 1px solid var(--border);
+
+    color: #65717d;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    position: relative;
+
+    z-index: 5;
+
+    background-color: rgba(10, 14, 20, 0.6);
+}
+
+
+/* =========================================================
+   SIDEBAR FECHADA
+========================================================= */
+
+.sidebar.closed {
+    width: 0;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border-right: none;
+
+    opacity: 0;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .content {
+        padding: 25px;
+    }
+
+    .topbar {
+        padding: 0 25px;
+    }
+
+    .ai-hud-top {
+        left: 20px;
+        right: 20px;
+    }
+
+    .ai-response {
+        width: 82%;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        height: 100vh;
+
+        z-index: 100;
+
+        box-shadow:
+            10px 0 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .status-cards {
+        flex-direction: column;
+    }
+
+    .dashboard-bottom {
+        flex-direction: column;
+    }
+
+    .welcome h2 {
+        font-size: 24px;
+    }
+
+
+    /* =====================================================
+       AI MOBILE
+    ===================================================== */
+
+    .ai-header {
+        padding: 0 20px;
+    }
+
+    .ai-title {
+        font-size: 19px;
+    }
+
+    .ai-status {
+        right: 20px;
+    }
+
+    .ai-back-button {
+        left: 15px;
+    }
+
+    .ai-hud-top {
+        top: 82px;
+
+        left: 15px;
+        right: 15px;
+
+        font-size: 8px;
+    }
+
+    .core-circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .core-circle::before {
+        width: 115px;
+        height: 115px;
+    }
+
+    .core-circle::after {
+        width: 80px;
+        height: 80px;
+    }
+
+    .core-inner {
+        width: 45px;
+        height: 45px;
+    }
+
+    .ai-core h2 {
+        font-size: 22px;
+    }
+
+    .ai-core p {
+        font-size: 12px;
+    }
+
+    .ai-response {
+        position: relative;
+
+        width: 85%;
+
+        margin-top: 15px;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+    .ai-command {
+        width: 90%;
+    }
+
+    .ai-footer {
+        padding: 0 20px;
+    }
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .page-title {
+        font-size: 18px;
+    }
+
+    .system-status {
+        display: none;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .status-card {
+        padding: 22px;
+    }
+
+    .dashboard-panel {
+        padding: 22px;
+    }
+
+    .welcome h2 {
+        font-size: 22px;
+    }
+
+    .clock {
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       AI MOBILE PEQUENO
+    ===================================================== */
+
+    .ai-header {
+        padding: 0 15px;
+    }
+
+    .ai-title {
+        font-size: 17px;
+
+        letter-spacing: 2px;
+    }
+
+    .ai-status {
+        right: 15px;
+
+        font-size: 11px;
+    }
+
+    .ai-back-button {
+        left: 10px;
+    }
+
+    .ai-hud-top {
+        top: 80px;
+
+        font-size: 7px;
+    }
+
+    .core-circle {
+        width: 125px;
+        height: 125px;
+    }
+
+    .core-circle::before {
+        width: 95px;
+        height: 95px;
+    }
+
+    .core-circle::after {
+        width: 65px;
+        height: 65px;
+    }
+
+    .core-inner {
+        width: 38px;
+        height: 38px;
+    }
+
+    .ai-core h2 {
+        font-size: 20px;
+
+        letter-spacing: 3px;
+    }
+
+    .ai-core p {
+        font-size: 11px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .ai-response {
+        width: 88%;
+
+        margin-top: 12px;
+
+        font-size: 11px;
+
+        line-height: 1.5;
+    }
+
+    .ai-command {
+        width: 92%;
+    }
+
+    .ai-command input {
+        padding: 14px;
+    }
+
+    .ai-command button {
+        width: 50px;
+    }
+
+    .ai-footer {
+        padding: 0 15px;
+
+        font-size: 9px;
+    }
+}
