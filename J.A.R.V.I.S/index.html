@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>J.A.R.V.I.S.</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="app">
+
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+
+        <div
+            class="sidebar"
+            id="sidebar"
+        >
+
+            <div class="logo">
+                J.A.R.V.I.S.
+            </div>
+
+
+            <nav>
+
+                <a
+                    href="#"
+                    id="navInicio"
+                >
+                    Início
+                </a>
+
+
+                <a
+                    href="#"
+                    id="navSistema"
+                >
+                    Sistema
+                </a>
+
+
+                <a
+                    href="#"
+                    id="navCasa"
+                >
+                    Casa
+                </a>
+
+
+                <a
+                    href="#"
+                    id="navDados"
+                >
+                    Dados
+                </a>
+
+
+                <a
+                    href="#"
+                    id="navConfiguracoes"
+                >
+                    Configurações
+                </a>
+
+            </nav>
+
+
+            <div class="ai-shortcut">
+
+                <button id="openAiPanel">
+
+                    ◉ J.A.R.V.I.S. AI
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             CONTROL PANEL
+        ====================================================== -->
+
+        <main id="controlPanel">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="menu-button"
+                        id="menuButton"
+                        title="Abrir ou fechar menu"
+                    >
+                        ☰
+                    </button>
+
+
+                    <h1
+                        class="page-title"
+                        id="pageTitle"
+                    >
+                        Início
+                    </h1>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <span class="system-status">
+                        ● ONLINE
+                    </span>
+
+
+                    <span
+                        class="clock"
+                        id="clock"
+                    >
+                        00:00:00
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTEÚDO -->
+
+            <section class="content">
+
+                <div class="welcome">
+
+                    <h2 id="welcomeTitle">
+                        Bom dia, Skavinski
+                    </h2>
+
+
+                    <p id="welcomeText">
+                        Todos os sistemas estão funcionando normalmente.
+                    </p>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div
+                    class="status-cards"
+                    id="statusCards"
+                >
+
+                    <div class="status-card">
+
+                        <h3>
+                            CPU
+                        </h3>
+
+                        <span>
+                            32%
+                        </span>
+
+                    </div>
+
+
+                    <div class="status-card">
+
+                        <h3>
+                            Memória
+                        </h3>
+
+                        <span>
+                            48%
+                        </span>
+
+                    </div>
+
+
+                    <div class="status-card">
+
+                        <h3>
+                            Rede
+                        </h3>
+
+                        <span>
+                            ONLINE
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAINÉIS -->
+
+                <div class="dashboard-bottom">
+
+
+                    <!-- ATIVIDADE -->
+
+                    <div class="dashboard-panel">
+
+                        <h3>
+                            Atividade do J.A.R.V.I.S.
+                        </h3>
+
+
+                        <div class="activity">
+
+                            <span class="activity-time">
+                                14:32
+                            </span>
+
+                            <span>
+                                Sistema iniciado
+                            </span>
+
+                        </div>
+
+
+                        <div class="activity">
+
+                            <span class="activity-time">
+                                14:30
+                            </span>
+
+                            <span>
+                                Samsung conectado
+                            </span>
+
+                        </div>
+
+
+                        <div class="activity">
+
+                            <span class="activity-time">
+                                14:28
+                            </span>
+
+                            <span>
+                                Sistema local conectado
+                            </span>
+
+                        </div>
+
+
+                        <div class="activity">
+
+                            <span class="activity-time">
+                                14:25
+                            </span>
+
+                            <span>
+                                J.A.R.V.I.S. online
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- DISPOSITIVOS -->
+
+                    <div class="dashboard-panel">
+
+                        <h3>
+                            Dispositivos
+                        </h3>
+
+
+                        <div class="device">
+
+                            <div>
+
+                                <strong>
+                                    Samsung
+                                </strong>
+
+
+                                <span>
+                                    Computador principal
+                                </span>
+
+                            </div>
+
+
+                            <span class="device-status">
+                                ONLINE
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- =====================================================
+             AI PANEL / TONY MODE
+        ====================================================== -->
+
+        <section
+            class="ai-panel"
+            id="aiPanel"
+        >
+
+
+            <!-- HEADER -->
+
+            <header class="ai-header">
+
+
+                <button
+                    class="ai-back-button"
+                    id="backToControl"
+                    title="Voltar ao Control Panel"
+                >
+                    ←
+                </button>
+
+
+                <span class="ai-title">
+                    J.A.R.V.I.S.
+                </span>
+
+
+                <span class="ai-status">
+                    ● ONLINE
+                </span>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 HUD
+            ================================================== -->
+
+            <div class="ai-hud-top">
+
+
+                <div class="ai-hud-corner">
+
+                    <span>
+                        J.A.R.V.I.S. CORE
+                    </span>
+
+                    <span>
+                        SYSTEM INTERFACE
+                    </span>
+
+                </div>
+
+
+                <div class="ai-hud-corner">
+
+                    <span>
+                        MODE: ACTIVE
+                    </span>
+
+                    <span>
+                        CONNECTION: LOCAL
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CORE
+            ================================================== -->
+
+            <div class="ai-core">
+
+
+                <div class="core-circle">
+
+                    <div class="core-inner"></div>
+
+                </div>
+
+
+                <h2>
+                    J.A.R.V.I.S.
+                </h2>
+
+
+                <p id="aiState">
+                    AGUARDANDO...
+                </p>
+
+
+                <!-- RESPOSTA -->
+
+                <div
+                    class="ai-response"
+                    id="aiResponse"
+                ></div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 COMANDO
+            ================================================== -->
+
+            <div class="ai-command">
+
+
+                <input
+                    type="text"
+                    id="aiInput"
+                    placeholder="Digite um comando..."
+                    autocomplete="off"
+                >
+
+
+                <button
+                    id="aiSend"
+                    title="Enviar comando"
+                >
+                    ➤
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="ai-footer">
+
+                <span>
+                    STATUS: ONLINE
+                </span>
+
+
+                <span>
+                    CORE: ACTIVE
+                </span>
+
+
+                <span>
+                    SYSTEM: READY
+                </span>
+
+            </footer>
+
+        </section>
+
+
+    </div>
+
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
